@@ -50,11 +50,5 @@
 - **Endpoint**: `GET /{shortenedKey}`
 - **Response**: 302 Redirect to the original URL
 
-## 기여 방법
-1. 이슈를 확인하고 작업할 기능을 선택합니다.
-2. 새로운 브랜치를 생성하고 기능을 구현합니다.
-3. PR(Pull Request)을 생성하여 코드 리뷰를 요청합니다.
 
-## 라이선스
-이 프로젝트는 MIT 라이선스를 따릅니다.
-
+ALL BY 근찬T
