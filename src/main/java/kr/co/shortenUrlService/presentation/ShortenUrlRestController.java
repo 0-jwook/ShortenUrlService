@@ -16,29 +16,31 @@ public class ShortenUrlRestController {
   }
 
 
-  //단축 url을 생성하는 API
+  //단축 URL을 생성하는 API
   @PostMapping("/shortenUrl")
-  public ShortenUrlCreateResponseDto createShortenedUrl(
-          @Valid @RequestBody ShortenUrlCreateRequestDto shortenUrlCreateRequestDto
+  public kr.co.shortenUrlService.presentation.ShortenUrlCreateResponseDto createShortenUrl(
+          @Valid @RequestBody kr.co.shortenUrlService.presentation.ShortenUrlCreateRequestDto shortenUrlCreateRequestDto
   ) {
-    //서비스코드를 추가해야한다
-    //DTO 타입을 반환해야한다
-    ShortenUrlCreateResponseDto shortenUrlCreateResponseDto = simpleShortenUrlService.generateShortenUrl(shortenUrlCreateRequestDto);
+    //서비스 코드를 추가해야한다.
+    //그리고 DTO타입으로 반환해야한다.
+    kr.co.shortenUrlService.presentation.ShortenUrlCreateResponseDto shortenUrlCreateResponseDto = simpleShortenUrlService.generateShortenUrl(shortenUrlCreateRequestDto);
 
     return shortenUrlCreateResponseDto;
   }
-  //key를 넘겨주면 리다이랙트 해주는 API
-  @GetMapping("{shortenUrlKey")
-  public ResponseEntity<?> redirectShortenUrl(){
+
+  //key를 넘겨주면 리다이렉트해주는 API
+  @GetMapping("{shortenUrlKey}")
+  public ResponseEntity<?> redirectShortenUrl() {
     return ResponseEntity.ok().body(null);
   }
 
-
-  //key를 넘겨주면 정보조회를 해주는 API
-  @GetMapping("/shortenUrl/{shortenUrlKey")
-  public ShortenUrlInformationDto getShortenUrlInformation(
+  //key를 넘겨주면 정보를 조회해주는 API
+  @GetMapping("/shortenUrl/{shortenUrlKey}")
+  public kr.co.shortenUrlService.presentation.ShortenUrlInformationDto getShortenUrlInformation(
           @PathVariable String shortenUrlKey
-  ){
-    return null;
+  ) {
+    ShortenUrlInformationDto shortenUrlInformationDto= simpleShortenUrlService.getshortenUrlInformationByShortenUrlKey(shortenUrlKey);
+
+    return shortenUrlInformationDto;
   }
 }
