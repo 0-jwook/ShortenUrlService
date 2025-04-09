@@ -47,4 +47,18 @@ public class SimpleShortenUrlService {
     ShortenUrlInformationDto shortenUrlInformationDto = new ShortenUrlInformationDto(shortenUrl);
     return shortenUrlInformationDto;
   }
+
+  public String getOriginalUrlByShortenUrlKey(String shortenUrlKey) {
+    //레포지토리의 힘을 빌려서 키를 이용해서 shortenUrl을 우선 찾기!
+    ShortenUrl shortenUrl = shortenUrlRepository.findShortenUrlByShortenUrlKey(shortenUrlKey);
+    //리다이렉트 한번 했으니 redirectCㅐunt를 +1해주는 코드 추가!
+    //자바빈 규약에 따라 도메인의 get(), set() 메서드를 난발하면 안된다
+    //대신 도메인 메서드를 따로 만들어서 호출 해야하며
+    //이는 캡슐화를(encapsulation) 시켰다라고도 표현한다
+    shortenUrl.increseRedirectCount(); //도메인 메서드를 통한 접근
+
+    //그 찾은 shortenUrl의 originalUrl을 찾아서 반환
+    String originalUrl = shortenUrl.getOriginalUrl();
+    return originalUrl;
+  }
 }

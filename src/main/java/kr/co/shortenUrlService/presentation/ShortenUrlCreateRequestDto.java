@@ -9,7 +9,7 @@ import org.hibernate.validator.constraints.URL;
 public class ShortenUrlCreateRequestDto {
 
   @NotNull
-  @URL(regexp = "^((http|https)://)?(www.)?([a-zA-Z0-9]+)\\.[a-z]+([a-zA-z0-9.?#]+)?")
+  @URL
   private String originalUrl;
 
   public String getOriginalUrl() {

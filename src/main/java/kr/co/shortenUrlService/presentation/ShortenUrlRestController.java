@@ -3,8 +3,12 @@ package kr.co.shortenUrlService.presentation;
 import jakarta.validation.Valid;
 import kr.co.shortenUrlService.application.SimpleShortenUrlService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.net.URI;
 
 @RestController
 public class ShortenUrlRestController {
@@ -30,8 +34,15 @@ public class ShortenUrlRestController {
 
   //key를 넘겨주면 리다이렉트해주는 API
   @GetMapping("{shortenUrlKey}")
-  public ResponseEntity<?> redirectShortenUrl() {
-    return ResponseEntity.ok().body(null);
+  public ResponseEntity<?> redirectShortenUrl(
+          @PathVariable String shortenUrlKey
+  ) {
+    String originalUrl = simpleShortenUrlService.getOriginalUrlByShortenUrlKey(shortenUrlKey);
+    URI redirectUri = URI.create(originalUrl);
+    HttpHeaders httpHeaders = new HttpHeaders();
+    httpHeaders.setLocation(redirectUri);
+
+    return new ResponseEntity<>(httpHeaders,HttpStatus.MOVED_PERMANENTLY);
   }
 
   //key를 넘겨주면 정보를 조회해주는 API
