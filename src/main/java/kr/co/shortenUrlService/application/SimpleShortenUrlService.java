@@ -37,7 +37,7 @@ public class SimpleShortenUrlService {
     //ShortenUrl을 ShortenUrlCreateResponseDto로 변환하여서 반환.
     ShortenUrlCreateResponseDto shortenUrlCreateResponseDto
             = new ShortenUrlCreateResponseDto(shortenUrl);
-    return null;
+    return shortenUrlCreateResponseDto; // 반환값이 null이었어서 반환값이 안나왔던것
   }
 
   public ShortenUrlInformationDto getshortenUrlInformationByShortenUrlKey(String shortenUrlKey) {
