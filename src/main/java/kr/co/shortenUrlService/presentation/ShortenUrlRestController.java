@@ -19,7 +19,6 @@ public class ShortenUrlRestController {
     this.simpleShortenUrlService = simpleShortenUrlService;
   }
 
-
   //단축 URL을 생성하는 API
   @PostMapping("/shortenUrl")
   public kr.co.shortenUrlService.presentation.ShortenUrlCreateResponseDto createShortenUrl(
